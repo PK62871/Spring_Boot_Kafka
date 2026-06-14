@@ -1,0 +1,68 @@
+--This host of kafka cluster we can give 2 3 host nae so if anyone will be down it will connect with other....
+
+##spring.kafka.producer.bootstrap.servers=localhost:9092.localhost:9094
+
+This is for to serialize the Key.....
+##spring.kafka.producer.key-serializer=org.apache.kafka.common.serialization.StringSerializer
+
+This is for to Serialize the Value
+##spring.kafka.producer.value-serializer=org.springframework.kafka.support.serializer.JsonSerializer
+
+This is for to get the acks from all the broker that message is written successfully or not
+
+##spring.kafka.producer.acks=all & -1/0/1
+
+all means to get acks from all broker
+1 means to get acks from master broker
+0 means don't expect any acks from any broker Just fire and forget
+By default will get the acks from leader broker
+
+##spring.kafka.producer.retries=10
+
+This is for How many times kafka will retry to send message to broker if broker has some failure for short time
+By default retries count is very large 2147483647 (INTEGER.MAX_VALUES)
+
+
+##spring.kafka.producer.properties.retry.backoff.ms=1000
+
+This is for how long producer will wait before attempting to retry a failed request. Default value is 100ms
+
+##spring.kafka.producer.properties.delivery.timeout.ms=120000
+
+The maximum time producer will spend trying to deliver the message.Default value is 120000(2Min)
+This time is for entire process....
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Delivery timeout ms >= linger.ms + request.timeout.ms
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+###spring.kafka.producer.properties.linger.ms=0
+
+The maximum time Producer will wait and buffer data before sending a batch of messages.The default value is 0
+means as soon as producer will get data it will publish that message but when will add linger.ms then for that time
+Producer ill wait to accumulate more data and it will send it into batch
+
+We can also use compression to compress the data and send so t will increase the throughput of producer....like gzip , snappy
++++++++++++++++++++++++++++++++++++
+
+##spring.kafka.producer.request.timeout.ms=3000
+
+The maximum time that producer will wait for a response from the broker after sending a request.
+The default value is 30000(30s)
+
+
+##spring.kafka.producer.properties.enable.idempotence=true
+
+This property will ensure that while sending message to kafka broker if any failure will occur before acks
+so it will retry for multiple time but massage will publish only once.......
+
+In Kafka newer version by default this is enabled as true..
+
+##spring.kafka.producer.max.in.flight.requests.per.connection=5
+
+This property in Producer means that kafka will send 5message at once without waiting for acks..if in case of failure
+it will retry...and order of message will be same order will not get changed
+
+
+
+
