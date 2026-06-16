@@ -1,6 +1,6 @@
 package com.kafka_producer.config;
 
-import com.kafka_producer.controller.ProductEvent;
+import com.core.module.ProductEvent;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.beans.factory.annotation.Value;
@@ -83,7 +83,7 @@ public class KafkaConfig {
         return TopicBuilder.name("product-created-event-topic")
                 .partitions(3)
                 .replicas(3)
-                .configs(Map.of("min-in-ync-replicas" ,"2"))
+                //.configs(Map.of("min-in-ync-replicas" ,"2"))
                 .build();
     }
 }

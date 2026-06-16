@@ -32,6 +32,11 @@
     </properties>
         <dependencies>
 
+            <dependency>
+                <groupId>com.core.module</groupId>
+                <artifactId>Shared-Library</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
             <!-- Spring Web -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
